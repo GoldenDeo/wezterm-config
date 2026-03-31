@@ -206,7 +206,7 @@ local keys = {
    -- resize panes
    {
       key = 'p',
-      mods = 'LEADER',
+      mods = mod.SUPER,
       action = act.ActivateKeyTable({
          name = 'resize_pane',
          one_shot = false,

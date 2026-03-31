@@ -368,7 +368,7 @@ Most of the key bindings revolve around a <kbd>SUPER</kbd> and <kbd>SUPER_REV</k
 | Keys                           | Action        |
 | ------------------------------ | ------------- |
 | <kbd>LEADER</kbd>+<kbd>f</kbd> | `resize_font` |
-| <kbd>LEADER</kbd>+<kbd>p</kbd> | `resize_pane` |
+| <kbd>SUPER</kbd>+<kbd>p</kbd>  | `resize_pane` |
 
 ##### Key Table: `resize_font`
 
