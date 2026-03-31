@@ -57,6 +57,9 @@ local keys = {
    { key = 'c',          mods = mod.SUPER,     action = act.CopyTo('Clipboard') },
    { key = 'v',          mods = mod.SUPER,     action = act.PasteFrom('Clipboard') },
 
+   -- disable Ctrl+D (prevents accidental terminal close) --
+   { key = 'd', mods = 'CTRL', action = act.Nop },
+
    -- whisper voice input --
    {
       key = 'v',
@@ -163,13 +166,13 @@ local keys = {
 
    -- panes: zoom+close pane
    { key = 'Enter', mods = mod.SUPER,     action = act.TogglePaneZoomState },
-   { key = 'w',     mods = mod.SUPER,     action = act.CloseCurrentPane({ confirm = false }) },
+   { key = 'w',     mods = mod.SUPER,     action = act.SendString('\x04') },
 
    -- panes: navigation
-   { key = 'k',     mods = mod.SUPER_REV, action = act.ActivatePaneDirection('Up') },
-   { key = 'j',     mods = mod.SUPER_REV, action = act.ActivatePaneDirection('Down') },
-   { key = 'h',     mods = mod.SUPER_REV, action = act.ActivatePaneDirection('Left') },
-   { key = 'l',     mods = mod.SUPER_REV, action = act.ActivatePaneDirection('Right') },
+   { key = 'w',     mods = mod.SUPER_REV, action = act.ActivatePaneDirection('Up') },
+   { key = 's',     mods = mod.SUPER_REV, action = act.ActivatePaneDirection('Down') },
+   { key = 'a',     mods = mod.SUPER_REV, action = act.ActivatePaneDirection('Left') },
+   { key = 'e',     mods = mod.SUPER_REV, action = act.ActivatePaneDirection('Right') },
    {
       key = 'p',
       mods = mod.SUPER_REV,

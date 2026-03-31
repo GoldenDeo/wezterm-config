@@ -332,10 +332,10 @@ Most of the key bindings revolve around a <kbd>SUPER</kbd> and <kbd>SUPER_REV</k
 
 | Keys                              | Action                  |
 | --------------------------------- | ----------------------- |
-| <kbd>SUPER_REV</kbd>+<kbd>k</kbd> | Move to Pane (Up)       |
-| <kbd>SUPER_REV</kbd>+<kbd>j</kbd> | Move to Pane (Down)     |
-| <kbd>SUPER_REV</kbd>+<kbd>h</kbd> | Move to Pane (Left)     |
-| <kbd>SUPER_REV</kbd>+<kbd>l</kbd> | Move to Pane (Right)    |
+| <kbd>SUPER_REV</kbd>+<kbd>w</kbd> | Move to Pane (Up)       |
+| <kbd>SUPER_REV</kbd>+<kbd>s</kbd> | Move to Pane (Down)     |
+| <kbd>SUPER_REV</kbd>+<kbd>a</kbd> | Move to Pane (Left)     |
+| <kbd>SUPER_REV</kbd>+<kbd>e</kbd> | Move to Pane (Right)    |
 | <kbd>SUPER_REV</kbd>+<kbd>p</kbd> | Swap with selected Pane |
 
 ##### Panes: Scroll Pane
