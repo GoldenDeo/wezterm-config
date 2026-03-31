@@ -205,8 +205,20 @@
 
 - ##### Things You Might Want to Change:
 
+  - [./config/general.lua](./config/general.lua) for default working directory (`default_cwd`)
   - [./config/domains.lua](./config/domains.lua) for custom SSH/WSL domains
   - [./config/launch.lua](./config/launch.lua) for preferred shells and its paths
+
+---
+
+### Status Bar
+
+The right status bar displays:
+- Current date and time
+- Battery level and charging status
+- Current working directory (shortened with `~` for home)
+
+&nbsp;
 
 ---
 
@@ -277,6 +289,7 @@ Most of the key bindings revolve around a <kbd>SUPER</kbd> and <kbd>SUPER_REV</k
 | --------------------------------- | ------------------------------------- |
 | <kbd>SUPER</kbd>+<kbd>t</kbd>     | `SpawnTab` <sub>(DefaultDomain)</sub> |
 | <kbd>SUPER_REV</kbd>+<kbd>t</kbd> | `SpawnTab` <sub>(WSL:Ubuntu)</sub>    |
+| <kbd>SUPER</kbd>+<kbd>w</kbd>     | Close shell (EOF)                     |
 | <kbd>SUPER_REV</kbd>+<kbd>w</kbd> | `CloseCurrentTab`                     |
 
 ##### Tabs: Navigation
@@ -321,12 +334,11 @@ Most of the key bindings revolve around a <kbd>SUPER</kbd> and <kbd>SUPER_REV</k
 | <kbd>SUPER</kbd>+<kbd>\\</kbd>     | `SplitVertical` <sub>(CurrentPaneDomain)</sub>   |
 | <kbd>SUPER_REV</kbd>+<kbd>\\</kbd> | `SplitHorizontal` <sub>(CurrentPaneDomain)</sub> |
 
-##### Panes: Zoom+Close Pane
+##### Panes: Zoom
 
 | Keys                              | Action                |
 | --------------------------------- | --------------------- |
 | <kbd>SUPER</kbd>+<kbd>Enter</kbd> | `TogglePaneZoomState` |
-| <kbd>SUPER</kbd>+<kbd>w</kbd>     | `CloseCurrentPane`    |
 
 ##### Panes: Navigation
 
@@ -353,11 +365,11 @@ Most of the key bindings revolve around a <kbd>SUPER</kbd> and <kbd>SUPER_REV</k
 
 | Keys                              | Action                       |
 | --------------------------------- | ---------------------------- |
-| <kbd>SUPER</kbd>+<kbd>/</kbd>     | Select Random Image          |
-| <kbd>SUPER</kbd>+<kbd>,</kbd>     | Cycle to next Image          |
-| <kbd>SUPER</kbd>+<kbd>.</kbd>     | Cycle to previous Image      |
-| <kbd>SUPER_REV</kbd>+<kbd>/</kbd> | Fuzzy select Image           |
-| <kbd>SUPER</kbd>+<kbd>b</kbd>     | Toggle background focus mode |
+| <kbd>SUPER</kbd>+<kbd>/</kbd>     | Select Random Image <sub>(per-tab)</sub> |
+| <kbd>SUPER</kbd>+<kbd>,</kbd>     | Cycle to next Image <sub>(per-tab)</sub> |
+| <kbd>SUPER</kbd>+<kbd>.</kbd>     | Cycle to previous Image <sub>(per-tab)</sub> |
+| <kbd>SUPER_REV</kbd>+<kbd>/</kbd> | Fuzzy select Image <sub>(per-tab)</sub>  |
+| <kbd>SUPER</kbd>+<kbd>b</kbd>     | Toggle background focus mode             |
 
 &nbsp;
 
