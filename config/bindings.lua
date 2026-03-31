@@ -1,6 +1,7 @@
 local wezterm = require('wezterm')
 local platform = require('utils.platform')
 local backdrops = require('utils.backdrops')
+local tab_backdrop = require('events.tab-backdrop')
 local act = wezterm.action
 
 local mod = {}
@@ -57,9 +58,6 @@ local keys = {
    { key = 'c',          mods = mod.SUPER,     action = act.CopyTo('Clipboard') },
    { key = 'v',          mods = mod.SUPER,     action = act.PasteFrom('Clipboard') },
 
-   -- disable Ctrl+D (prevents accidental terminal close) --
-   { key = 'd', mods = 'CTRL', action = act.Nop },
-
    -- whisper voice input --
    {
       key = 'v',
@@ -108,22 +106,25 @@ local keys = {
    {
       key = [[/]],
       mods = mod.SUPER,
-      action = wezterm.action_callback(function(window, _pane)
+      action = wezterm.action_callback(function(window, pane)
          backdrops:random(window)
+         tab_backdrop.set_for_tab(pane, backdrops.current_idx)
       end),
    },
    {
       key = [[,]],
       mods = mod.SUPER,
-      action = wezterm.action_callback(function(window, _pane)
+      action = wezterm.action_callback(function(window, pane)
          backdrops:cycle_back(window)
+         tab_backdrop.set_for_tab(pane, backdrops.current_idx)
       end),
    },
    {
       key = [[.]],
       mods = mod.SUPER,
-      action = wezterm.action_callback(function(window, _pane)
+      action = wezterm.action_callback(function(window, pane)
          backdrops:cycle_forward(window)
+         tab_backdrop.set_for_tab(pane, backdrops.current_idx)
       end),
    },
    {
@@ -134,12 +135,13 @@ local keys = {
          choices = backdrops:choices(),
          fuzzy = true,
          fuzzy_description = 'Select Background: ',
-         action = wezterm.action_callback(function(window, _pane, idx)
+         action = wezterm.action_callback(function(window, pane, idx)
             if not idx then
                return
             end
             ---@diagnostic disable-next-line: param-type-mismatch
             backdrops:set_img(window, tonumber(idx))
+            tab_backdrop.set_for_tab(pane, tonumber(idx))
          end),
       }),
    },
@@ -164,7 +166,7 @@ local keys = {
       action = act.SplitHorizontal({ domain = 'CurrentPaneDomain' }),
    },
 
-   -- panes: zoom+close pane
+   -- panes: zoom
    { key = 'Enter', mods = mod.SUPER,     action = act.TogglePaneZoomState },
    { key = 'w',     mods = mod.SUPER,     action = act.SendString('\x04') },
 
