@@ -2,22 +2,19 @@
 set -e
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-TARGET="$HOME/.wezterm.lua"
-SOURCE="$REPO_DIR/wezterm.lua"
+BOOTSTRAP="$HOME/.wezterm.lua"
+CONFIG_LINK="$HOME/.config/wezterm"
 
-echo "Setting up WezTerm config symlink..."
-echo "  source: $SOURCE"
-echo "  target: $TARGET"
+echo "Setting up WezTerm config..."
+echo "  repo: $REPO_DIR"
 
-# Backup existing file if it's not already a symlink
-if [ -f "$TARGET" ] && [ ! -L "$TARGET" ]; then
-  BACKUP="$TARGET.backup.$(date +%Y%m%d_%H%M%S)"
-  echo "  backup: $BACKUP"
-  mv "$TARGET" "$BACKUP"
+# ~/.config/wezterm symlink
+if [ -d "$CONFIG_LINK" ] && [ ! -L "$CONFIG_LINK" ]; then
+  mv "$CONFIG_LINK" "${CONFIG_LINK}.backup.$(date +%Y%m%d_%H%M%S)"
 fi
+[ -L "$CONFIG_LINK" ] && rm "$CONFIG_LINK"
+mkdir -p "$HOME/.config"
+ln -s "$REPO_DIR" "$CONFIG_LINK"
+echo "  linked: ~/.config/wezterm → $REPO_DIR"
 
-# Remove existing symlink if present
-[ -L "$TARGET" ] && rm "$TARGET"
-
-ln -s "$SOURCE" "$TARGET"
-echo "Done! ~/.wezterm.lua → $SOURCE"
+echo "Done!"
