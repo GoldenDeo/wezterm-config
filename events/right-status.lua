@@ -25,6 +25,7 @@ local M = {}
 
 local ICON_SEPARATOR = nf.oct_dash
 local ICON_DATE = nf.fa_calendar
+local ICON_CWD = nf.md_folder
 
 ---@type string[]
 local discharging_icons = {
@@ -58,7 +59,8 @@ local charging_icons = {
 local colors = {
    date      = { fg = '#fab387', bg = 'rgba(0, 0, 0, 0.4)' },
    battery   = { fg = '#f9e2af', bg = 'rgba(0, 0, 0, 0.4)' },
-   separator = { fg = '#74c7ec', bg = 'rgba(0, 0, 0, 0.4)' }
+   separator = { fg = '#74c7ec', bg = 'rgba(0, 0, 0, 0.4)' },
+   cwd       = { fg = '#a6e3a1', bg = 'rgba(0, 0, 0, 0.4)' }
 }
 
 local cells = Cells:new()
@@ -66,9 +68,12 @@ local cells = Cells:new()
 cells
    :add_segment('date_icon', ICON_DATE .. '  ', colors.date, attr(attr.intensity('Bold')))
    :add_segment('date_text', '', colors.date, attr(attr.intensity('Bold')))
-   :add_segment('separator', ' ' .. ICON_SEPARATOR .. '  ', colors.separator)
+   :add_segment('separator1', ' ' .. ICON_SEPARATOR .. '  ', colors.separator)
    :add_segment('battery_icon', '', colors.battery)
    :add_segment('battery_text', '', colors.battery, attr(attr.intensity('Bold')))
+   :add_segment('separator2', ' ' .. ICON_SEPARATOR .. '  ', colors.separator)
+   :add_segment('cwd_icon', ICON_CWD .. '  ', colors.cwd, attr(attr.intensity('Bold')))
+   :add_segment('cwd_text', '', colors.cwd, attr(attr.intensity('Bold')))
 
 ---@return string, string
 local function battery_info()
@@ -99,17 +104,24 @@ M.setup = function(opts)
       wezterm.log_error(err)
    end
 
-   wezterm.on('update-right-status', function(window, _pane)
+   wezterm.on('update-right-status', function(window, pane)
       local battery_text, battery_icon = battery_info()
+      local cwd = pane:get_current_working_dir()
+      local cwd_text = ''
+      if cwd then
+         cwd_text = cwd.file_path or tostring(cwd)
+         cwd_text = cwd_text:gsub('^' .. wezterm.home_dir, '~')
+      end
 
       cells
          :update_segment_text('date_text', wezterm.strftime(valid_opts.date_format))
          :update_segment_text('battery_icon', battery_icon)
          :update_segment_text('battery_text', battery_text)
+         :update_segment_text('cwd_text', cwd_text)
 
       window:set_right_status(
          wezterm.format(
-            cells:render({ 'date_icon', 'date_text', 'separator', 'battery_icon', 'battery_text' })
+            cells:render({ 'date_icon', 'date_text', 'separator1', 'battery_icon', 'battery_text', 'separator2', 'cwd_icon', 'cwd_text' })
          )
       )
    end)
