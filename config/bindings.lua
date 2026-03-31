@@ -195,6 +195,11 @@ local keys = {
       action = act.PaneSelect({ alphabet = '1234567890', mode = 'SwapWithActiveKeepFocus' }),
    },
 
+   -- font size --
+   { key = '=',          mods = mod.SUPER,     action = act.IncreaseFontSize },
+   { key = '-',          mods = mod.SUPER,     action = act.DecreaseFontSize },
+   { key = '0',          mods = mod.SUPER_REV, action = act.ResetFontSize },
+
    -- panes: scroll pane
    { key = 'u',        mods = mod.SUPER, action = act.ScrollByLine(-5) },
    { key = 'd',        mods = mod.SUPER, action = act.ScrollByLine(5) },

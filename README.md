@@ -361,6 +361,16 @@ Most of the key bindings revolve around a <kbd>SUPER</kbd> and <kbd>SUPER_REV</k
 
 &nbsp;
 
+#### Font Size
+
+| Keys                              | Action             |
+| --------------------------------- | ------------------ |
+| <kbd>SUPER</kbd>+<kbd>=</kbd>     | `IncreaseFontSize` |
+| <kbd>SUPER</kbd>+<kbd>-</kbd>     | `DecreaseFontSize` |
+| <kbd>SUPER_REV</kbd>+<kbd>0</kbd> | `ResetFontSize`    |
+
+&nbsp;
+
 #### Background Images
 
 | Keys                              | Action                       |
