@@ -77,8 +77,22 @@ local keys = {
    { key = 'w',          mods = mod.SUPER_REV, action = act.CloseCurrentTab({ confirm = false }) },
 
    -- tabs: navigation
-   { key = '[',          mods = mod.SUPER,     action = act.ActivateTabRelative(-1) },
-   { key = ']',          mods = mod.SUPER,     action = act.ActivateTabRelative(1) },
+   {
+      key = '[',
+      mods = mod.SUPER,
+      action = wezterm.action_callback(function(window, pane)
+         window:perform_action(act.ActivateTabRelative(-1), pane)
+         tab_backdrop.apply_for_tab(window)
+      end),
+   },
+   {
+      key = ']',
+      mods = mod.SUPER,
+      action = wezterm.action_callback(function(window, pane)
+         window:perform_action(act.ActivateTabRelative(1), pane)
+         tab_backdrop.apply_for_tab(window)
+      end),
+   },
    { key = '[',          mods = mod.SUPER_REV, action = act.MoveTabRelative(-1) },
    { key = ']',          mods = mod.SUPER_REV, action = act.MoveTabRelative(1) },
 
@@ -171,10 +185,10 @@ local keys = {
    { key = 'w',     mods = mod.SUPER,     action = act.SendString('\x04') },
 
    -- panes: navigation
-   { key = 'w',     mods = mod.SUPER_REV, action = act.ActivatePaneDirection('Up') },
-   { key = 's',     mods = mod.SUPER_REV, action = act.ActivatePaneDirection('Down') },
-   { key = 'a',     mods = mod.SUPER_REV, action = act.ActivatePaneDirection('Left') },
-   { key = 'e',     mods = mod.SUPER_REV, action = act.ActivatePaneDirection('Right') },
+   { key = 'UpArrow',    mods = mod.SUPER_REV, action = act.ActivatePaneDirection('Up') },
+   { key = 'DownArrow',  mods = mod.SUPER_REV, action = act.ActivatePaneDirection('Down') },
+   { key = 'LeftArrow',  mods = mod.SUPER_REV, action = act.ActivatePaneDirection('Left') },
+   { key = 'RightArrow', mods = mod.SUPER_REV, action = act.ActivatePaneDirection('Right') },
    {
       key = 'p',
       mods = mod.SUPER_REV,
@@ -188,14 +202,14 @@ local keys = {
    { key = 'PageDown', mods = 'NONE',    action = act.ScrollByPage(0.75) },
 
    -- tabs: switch by number (CMD+1..8) --
-   { key = '1', mods = mod.SUPER, action = act.ActivateTab(0) },
-   { key = '2', mods = mod.SUPER, action = act.ActivateTab(1) },
-   { key = '3', mods = mod.SUPER, action = act.ActivateTab(2) },
-   { key = '4', mods = mod.SUPER, action = act.ActivateTab(3) },
-   { key = '5', mods = mod.SUPER, action = act.ActivateTab(4) },
-   { key = '6', mods = mod.SUPER, action = act.ActivateTab(5) },
-   { key = '7', mods = mod.SUPER, action = act.ActivateTab(6) },
-   { key = '8', mods = mod.SUPER, action = act.ActivateTab(7) },
+   { key = '1', mods = mod.SUPER, action = wezterm.action_callback(function(w, p) w:perform_action(act.ActivateTab(0), p); tab_backdrop.apply_for_tab(w) end) },
+   { key = '2', mods = mod.SUPER, action = wezterm.action_callback(function(w, p) w:perform_action(act.ActivateTab(1), p); tab_backdrop.apply_for_tab(w) end) },
+   { key = '3', mods = mod.SUPER, action = wezterm.action_callback(function(w, p) w:perform_action(act.ActivateTab(2), p); tab_backdrop.apply_for_tab(w) end) },
+   { key = '4', mods = mod.SUPER, action = wezterm.action_callback(function(w, p) w:perform_action(act.ActivateTab(3), p); tab_backdrop.apply_for_tab(w) end) },
+   { key = '5', mods = mod.SUPER, action = wezterm.action_callback(function(w, p) w:perform_action(act.ActivateTab(4), p); tab_backdrop.apply_for_tab(w) end) },
+   { key = '6', mods = mod.SUPER, action = wezterm.action_callback(function(w, p) w:perform_action(act.ActivateTab(5), p); tab_backdrop.apply_for_tab(w) end) },
+   { key = '7', mods = mod.SUPER, action = wezterm.action_callback(function(w, p) w:perform_action(act.ActivateTab(6), p); tab_backdrop.apply_for_tab(w) end) },
+   { key = '8', mods = mod.SUPER, action = wezterm.action_callback(function(w, p) w:perform_action(act.ActivateTab(7), p); tab_backdrop.apply_for_tab(w) end) },
 
    -- key-tables --
    -- resizes fonts
