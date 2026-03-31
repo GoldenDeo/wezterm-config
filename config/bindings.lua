@@ -80,33 +80,7 @@ local keys = {
    -- window: spawn windows
    { key = 'n',          mods = mod.SUPER,     action = act.SpawnWindow },
 
-   -- window: zoom window
-   {
-      key = '-',
-      mods = mod.SUPER,
-      action = wezterm.action_callback(function(window, _pane)
-         local dimensions = window:get_dimensions()
-         if dimensions.is_full_screen then
-            return
-         end
-         local new_width = dimensions.pixel_width - 50
-         local new_height = dimensions.pixel_height - 50
-         window:set_inner_size(new_width, new_height)
-      end)
-   },
-   {
-      key = '=',
-      mods = mod.SUPER,
-      action = wezterm.action_callback(function(window, _pane)
-         local dimensions = window:get_dimensions()
-         if dimensions.is_full_screen then
-            return
-         end
-         local new_width = dimensions.pixel_width + 50
-         local new_height = dimensions.pixel_height + 50
-         window:set_inner_size(new_width, new_height)
-      end)
-   },
+   -- window: maximize
    {
       key = 'Enter',
       mods = mod.SUPER_REV,
@@ -206,18 +180,6 @@ local keys = {
    { key = '7', mods = mod.SUPER, action = act.ActivateTab(6) },
    { key = '8', mods = mod.SUPER, action = act.ActivateTab(7) },
 
-   -- whisper voice input (Ctrl+V) --
-   {
-      key = 'v',
-      mods = 'CTRL',
-      action = wezterm.action_callback(function(window, pane)
-         wezterm.background_child_process({
-            os.getenv('HOME') .. '/whisper_wezterm.sh',
-            tostring(pane:pane_id()),
-         })
-      end),
-   },
-
    -- key-tables --
    -- resizes fonts
    {
@@ -272,7 +234,7 @@ local mouse_bindings = {
 return {
    disable_default_key_bindings = true,
    -- disable_default_mouse_bindings = true,
-   leader = { key = 'Space', mods = mod.SUPER_REV },
+   leader = { key = 'a', mods = mod.SUPER_REV },
    keys = keys,
    key_tables = key_tables,
    mouse_bindings = mouse_bindings,
