@@ -224,7 +224,7 @@ Most of the key bindings revolve around a <kbd>SUPER</kbd> and <kbd>SUPER_REV</k
 > To avoid confusion when switching between different OS and to avoid conflicting<br>
 > with OS's built-in keyboard shortcuts.
 
-- On all platforms: <kbd>LEADER</kbd> ⇨ <kbd>SUPER_REV</kbd>+<kbd>Space</kbd>
+- On all platforms: <kbd>LEADER</kbd> ⇨ <kbd>SUPER_REV</kbd>+<kbd>a</kbd>
 
 #### Miscellaneous/Useful
 
@@ -244,10 +244,18 @@ Most of the key bindings revolve around a <kbd>SUPER</kbd> and <kbd>SUPER_REV</k
 
 #### Copy+Paste
 
-| Keys                                          | Action               |
-| --------------------------------------------- | -------------------- |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>c</kbd> | Copy to Clipboard    |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>v</kbd> | Paste from Clipboard |
+| Keys                              | Action               |
+| --------------------------------- | -------------------- |
+| <kbd>SUPER</kbd>+<kbd>c</kbd>     | Copy to Clipboard    |
+| <kbd>SUPER</kbd>+<kbd>v</kbd>     | Paste from Clipboard |
+
+&nbsp;
+
+#### Whisper Voice Input
+
+| Keys                                  | Action              |
+| ------------------------------------- | ------------------- |
+| <kbd>Ctrl</kbd>+<kbd>v</kbd>          | Start Whisper input |
 
 &nbsp;
 
@@ -297,11 +305,10 @@ Most of the key bindings revolve around a <kbd>SUPER</kbd> and <kbd>SUPER_REV</k
 
 #### Windows
 
-| Keys                          | Action               |
-| ----------------------------- | -------------------- |
-| <kbd>SUPER</kbd>+<kbd>n</kbd> | `SpawnWindow`        |
-| <kbd>SUPER</kbd>+<kbd>=</kbd> | Increase Window Size |
-| <kbd>SUPER</kbd>+<kbd>-</kbd> | Decrease Window Size |
+| Keys                                    | Action        |
+| --------------------------------------- | ------------- |
+| <kbd>SUPER</kbd>+<kbd>n</kbd>           | `SpawnWindow` |
+| <kbd>SUPER_REV</kbd>+<kbd>Enter</kbd>   | `Maximize`    |
 
 &nbsp;
 
@@ -377,10 +384,10 @@ Most of the key bindings revolve around a <kbd>SUPER</kbd> and <kbd>SUPER_REV</k
 
 | Keys           | Action                                         |
 | -------------- | ---------------------------------------------- |
-| <kbd>k</kbd>   | `AdjustPaneSize` <sub>(Direction: Up)</sub>    |
-| <kbd>j</kbd>   | `AdjustPaneSize` <sub>(Direction: Down)</sub>  |
-| <kbd>h</kbd>   | `AdjustPaneSize` <sub>(Direction: Left)</sub>  |
-| <kbd>l</kbd>   | `AdjustPaneSize` <sub>(Direction: Right)</sub> |
+| <kbd>w</kbd>   | `AdjustPaneSize` <sub>(Direction: Up)</sub>    |
+| <kbd>s</kbd>   | `AdjustPaneSize` <sub>(Direction: Down)</sub>  |
+| <kbd>a</kbd>   | `AdjustPaneSize` <sub>(Direction: Left)</sub>  |
+| <kbd>d</kbd>   | `AdjustPaneSize` <sub>(Direction: Right)</sub> |
 | <kbd>q</kbd>   | `PopKeyTable` <sub>(exit)</sub>                |
 | <kbd>Esc</kbd> | `PopKeyTable` <sub>(exit)</sub>                |
 

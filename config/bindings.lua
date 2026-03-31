@@ -54,8 +54,20 @@ local keys = {
    { key = 'Backspace',  mods = mod.SUPER,     action = act.SendString '\u{15}' },
 
    -- copy/paste --
-   { key = 'c',          mods = 'CTRL|SHIFT',  action = act.CopyTo('Clipboard') },
-   { key = 'v',          mods = 'CTRL|SHIFT',  action = act.PasteFrom('Clipboard') },
+   { key = 'c',          mods = mod.SUPER,     action = act.CopyTo('Clipboard') },
+   { key = 'v',          mods = mod.SUPER,     action = act.PasteFrom('Clipboard') },
+
+   -- whisper voice input --
+   {
+      key = 'v',
+      mods = 'CTRL',
+      action = wezterm.action_callback(function(window, pane)
+         wezterm.background_child_process({
+            os.getenv('HOME') .. '/whisper_wezterm.sh',
+            tostring(pane:pane_id()),
+         })
+      end),
+   },
 
    -- tabs --
    -- tabs: spawn+close
@@ -213,10 +225,10 @@ local key_tables = {
       { key = 'q',      action = 'PopKeyTable' },
    },
    resize_pane = {
-      { key = 'k',      action = act.AdjustPaneSize({ 'Up', 1 }) },
-      { key = 'j',      action = act.AdjustPaneSize({ 'Down', 1 }) },
-      { key = 'h',      action = act.AdjustPaneSize({ 'Left', 1 }) },
-      { key = 'l',      action = act.AdjustPaneSize({ 'Right', 1 }) },
+      { key = 'w',      action = act.AdjustPaneSize({ 'Up', 1 }) },
+      { key = 's',      action = act.AdjustPaneSize({ 'Down', 1 }) },
+      { key = 'a',      action = act.AdjustPaneSize({ 'Left', 1 }) },
+      { key = 'd',      action = act.AdjustPaneSize({ 'Right', 1 }) },
       { key = 'Escape', action = 'PopKeyTable' },
       { key = 'q',      action = 'PopKeyTable' },
    },
