@@ -167,28 +167,15 @@ local keys = {
       end)
    },
 
-   -- panes --
-   -- panes: split panes
-   {
-      key = [[\]],
-      mods = mod.SUPER,
-      action = act.SplitVertical({ domain = 'CurrentPaneDomain' }),
-   },
-   {
-      key = [[\]],
-      mods = mod.SUPER_REV,
-      action = act.SplitHorizontal({ domain = 'CurrentPaneDomain' }),
-   },
-
-   -- panes: zoom
-   { key = 'Enter', mods = mod.SUPER,     action = act.TogglePaneZoomState },
-   { key = 'w',     mods = mod.SUPER,     action = act.SendString('\x04') },
-
-   -- panes: navigation
-   { key = 'UpArrow',    mods = mod.SUPER_REV, action = act.ActivatePaneDirection('Up') },
-   { key = 'DownArrow',  mods = mod.SUPER_REV, action = act.ActivatePaneDirection('Down') },
-   { key = 'LeftArrow',  mods = mod.SUPER_REV, action = act.ActivatePaneDirection('Left') },
-   { key = 'RightArrow', mods = mod.SUPER_REV, action = act.ActivatePaneDirection('Right') },
+   -- panes (forwarded to tmux via SendString; \x01 = Ctrl+a prefix) --
+   { key = [[\]],        mods = mod.SUPER,     action = act.SendString('\x01|') },
+   { key = [[\]],        mods = mod.SUPER_REV, action = act.SendString('\x01-') },
+   { key = 'Enter',      mods = mod.SUPER,     action = act.SendString('\x01z') },
+   { key = 'UpArrow',    mods = mod.SUPER_REV, action = act.SendString('\x01k') },
+   { key = 'DownArrow',  mods = mod.SUPER_REV, action = act.SendString('\x01j') },
+   { key = 'LeftArrow',  mods = mod.SUPER_REV, action = act.SendString('\x01h') },
+   { key = 'RightArrow', mods = mod.SUPER_REV, action = act.SendString('\x01l') },
+   { key = 'w',          mods = mod.SUPER,     action = act.SendString('\x04') },
    {
       key = 'p',
       mods = mod.SUPER_REV,
@@ -227,12 +214,12 @@ local keys = {
          timeout_milliseconds = 1000,
       }),
    },
-   -- resize panes
+   -- resize panes (forwards Ctrl+a H/J/K/L while key-table active)
    {
       key = 'p',
       mods = mod.SUPER,
       action = act.ActivateKeyTable({
-         name = 'resize_pane',
+         name = 'tmux_resize',
          one_shot = false,
          timeout_milliseconds = 1000,
       }),
@@ -248,11 +235,11 @@ local key_tables = {
       { key = 'Escape', action = 'PopKeyTable' },
       { key = 'q',      action = 'PopKeyTable' },
    },
-   resize_pane = {
-      { key = 'w',      action = act.AdjustPaneSize({ 'Up', 1 }) },
-      { key = 's',      action = act.AdjustPaneSize({ 'Down', 1 }) },
-      { key = 'a',      action = act.AdjustPaneSize({ 'Left', 1 }) },
-      { key = 'd',      action = act.AdjustPaneSize({ 'Right', 1 }) },
+   tmux_resize = {
+      { key = 'w',      action = act.SendString('\x01K') },
+      { key = 's',      action = act.SendString('\x01J') },
+      { key = 'a',      action = act.SendString('\x01H') },
+      { key = 'd',      action = act.SendString('\x01L') },
       { key = 'Escape', action = 'PopKeyTable' },
       { key = 'q',      action = 'PopKeyTable' },
    },
