@@ -11,12 +11,10 @@ return {
    -- webgpu_preferred_adapter = gpu_adapters:pick_manual('Gl', 'Other'),
    underline_thickness = '1.5pt',
 
-   -- cursor
+   -- cursor (steady, no blink — lets the GPU idle instead of redrawing the bg image ~30x/s)
    animation_fps = 30,
-   cursor_blink_ease_in = 'EaseOut',
-   cursor_blink_ease_out = 'EaseOut',
-   default_cursor_style = 'BlinkingBlock',
-   cursor_blink_rate = 650,
+   default_cursor_style = 'SteadyBlock',
+   cursor_blink_rate = 0,
 
    -- color scheme
    colors = colors,

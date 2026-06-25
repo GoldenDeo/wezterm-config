@@ -78,7 +78,19 @@ function BackDrops:_create_opts()
       {
          source = { File = self.images[self.current_idx] },
          horizontal_align = 'Center',
-         opacity = 0.4,
+         opacity = 1,
+         -- dim the raw image itself (lower brightness = darker; 0.0..1.0)
+         hsb = { hue = 1.0, saturation = 1.0, brightness = 0.5 },
+      },
+      -- dark scrim drawn on top of the image (but below text) for readability.
+      -- raise `opacity` toward 1 if text is still hard to read on bright images.
+      {
+         source = { Color = '#0d1117' },
+         height = '120%',
+         width = '120%',
+         vertical_offset = '-10%',
+         horizontal_offset = '-10%',
+         opacity = 0.55,
       },
    }
 end
